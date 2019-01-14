@@ -8,11 +8,11 @@ print(dataset.describe())
 
 ######  mark missing data
 
-print((dataset[['blood pressure']] == 0).sum())
-
 #replace missing data with NaN
-dataset['blood pressure'] = dataset['blood pressure'].replace(0, np.NaN)
-???
+zero_not_accepted=['plasma','blood pressure','Triceps thickness','serum insulin','BMI']
+for column in zero_not_accepted:
+    print(column,(dataset[column] == 0).sum())
+    dataset[column] = dataset[column].replace(0, np.NaN)
 
 print(dataset.describe())
 
@@ -20,16 +20,17 @@ print(dataset.describe())
 #ToDo:
 #normilize values
 # use Imputer to deal with missing values
-# use OneHotEncode for categorial data
+# categorize
 # balance the data
 # fill missing values with mean column values
+# test train split
 
 
 # fill missing values with mean column values
 names=dataset.columns._data[:-1]
 
-X=dataset.iloc[:,:9];
-y=dataset.iloc[:,9];
+X=dataset.iloc[:,:9]
+y=dataset.iloc[:,9]
 
 ??????
 
